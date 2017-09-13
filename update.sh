@@ -5,8 +5,8 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-sessionfile=`find "${HOME}/.dbus/session-bus/" -type f`
-export `grep "DBUS_SESSION_BUS_ADDRESS" "${sessionfile}" | sed '/^#/d'`
+sessionfile="/run/user/$(id -u)/bus"
+export DBUS_SESSION_BUS_ADDRESS=unix:path=$sessionfile
 
 files=(
   11-Mid-Night.png
